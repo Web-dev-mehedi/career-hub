@@ -1,9 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Root from "../components/root/Root";
 import Statistics from "../components/statistics/Statistics";
 import AppliedJobs from "../components/appliedJobs/AppliedJobs";
 import Blogs from "../components/blogs/Blogs";
 import JobCategory from "../components/jobcategory/JobCategory";
+import AllJobs from "../components/allJobs/AllJobs";
+import JobDetailes from "../components/jobdetailes/JobDetailes";
 // 
 const router = createBrowserRouter([
     {
@@ -13,16 +15,26 @@ const router = createBrowserRouter([
         {
          path:"/",
          element:<Statistics/>,
-         loader: ()=> fetch('data/jobs.json'),
          children:[
-          {
-            path:"/jobcategory",
-            element:<JobCategory/>,
-            loader: ()=> fetch("data/categories.json")
-           
-          }
-         ]
-      },
+                {
+                  path:"/",
+                element:<JobCategory/>,
+                loader: ()=> fetch('/data/categories.json'),
+                children:[
+                
+                      {
+                        path:"/",
+                        element:<AllJobs/>,
+                        loader:()=> fetch('/public/data/jobs.json')
+                    
+                      }
+                  ],
+              },
+             
+      ],
+
+    },
+
       {
         path:"/appliedjobs",
         element: <AppliedJobs/>,
@@ -31,9 +43,14 @@ const router = createBrowserRouter([
       {
         path:"/blogs",
         element:<Blogs/>
+      },
+      {
+        path:"/job-details",
+        element:<JobDetailes/>,
+        loader: ()=> fetch('/public/data/jobs.json')
       }
     ]
-    },
+  },
 
   ]);
 

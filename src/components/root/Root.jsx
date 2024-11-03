@@ -4,16 +4,24 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
 const Root = () => {
+
+    // const handleDetails=()=>{
+    //       console.log("data")
+    // }
+
     return (
         <div className='container mx-auto'>
+          
             {/* header */}
             <Header/>
                {/* all pages */}
-                <div className='min-h-screen w-11/12 mx-auto'>
-                  <Outlet></Outlet>
+                 <div className='min-h-[calc(100vh-270px)] w-11/12 mx-auto'>
+                  <Outlet ></Outlet>
                 </div>
                 {/* footer */}
             <Footer/>
+
+           
         </div>
     );
 };

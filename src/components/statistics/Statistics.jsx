@@ -1,18 +1,18 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
-import JobCategory from '../jobcategory/JobCategory';
-import AllJobs from '../allJobs/AllJobs';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
-const Statistics = () => {
-    const data = useLoaderData()
-    console.log(data)
+
+
+const Statistics = ({handleDetails}) => {
+   
     return (
         <div>
-            <h2>hello form statistic</h2>
             {/*  */}
-            <JobCategory/>
-            {/*  */}
-            <AllJobs data={data}/>
+            {/*nested outlet */}
+             <Outlet handleDetails={handleDetails}/>
+             
+             {/* <button onClick={handleDetails} className='btn'>btn</button> */}
+        
         </div>
     );
 };
