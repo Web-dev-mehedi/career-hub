@@ -5,10 +5,6 @@ import Footer from '../footer/Footer';
 
 const Root = () => {
 
-    // const handleDetails=()=>{
-    //       console.log("data")
-    // }
-
     return (
         <div className='container mx-auto'>
           
@@ -16,7 +12,7 @@ const Root = () => {
             <Header/>
                {/* all pages */}
                  <div className='min-h-[calc(100vh-270px)] w-11/12 mx-auto'>
-                  <Outlet ></Outlet>
+                  <Outlet/>
                 </div>
                 {/* footer */}
             <Footer/>

@@ -15,22 +15,19 @@ const router = createBrowserRouter([
         {
          path:"/",
          element:<Statistics/>,
+         loader: ()=> fetch('/data/categories.json'),
          children:[
                 {
-                  path:"/",
-                element:<JobCategory/>,
-                loader: ()=> fetch('/data/categories.json'),
-                children:[
-                
-                      {
-                        path:"/",
-                        element:<AllJobs/>,
-                        loader:()=> fetch('/public/data/jobs.json')
-                    
-                      }
-                  ],
+                  path:"/jobcategory/:category_name",
+                element:<AllJobs/>,
+                loader:()=> fetch('../data/jobs.json'),
               },
-             
+              {
+                path:"/",
+                element:<AllJobs/>,
+                loader:()=> fetch('../data/jobs.json'),
+            
+              }  
       ],
 
     },
@@ -45,7 +42,7 @@ const router = createBrowserRouter([
         element:<Blogs/>
       },
       {
-        path:"/job-details",
+        path:"/job-details/:id",
         element:<JobDetailes/>,
         loader: ()=> fetch('/public/data/jobs.json')
       }

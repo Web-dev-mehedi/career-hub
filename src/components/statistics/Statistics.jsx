@@ -1,17 +1,18 @@
 import React from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
+import JobCategory from '../jobcategory/JobCategory';
 
 
 
-const Statistics = ({handleDetails}) => {
+const Statistics = () => {
+   const categories = useLoaderData();
    
     return (
         <div>
             {/*  */}
+            <JobCategory categories={categories}/>
             {/*nested outlet */}
-             <Outlet handleDetails={handleDetails}/>
-             
-             {/* <button onClick={handleDetails} className='btn'>btn</button> */}
+             <Outlet/>
         
         </div>
     );

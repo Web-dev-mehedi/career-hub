@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GrLocation } from 'react-icons/gr';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
+import { DataContext } from '../../contextApi/DataContext';
 
-const Job = ({job,handleDetails}) => {
+const Job = ({job}) => {
 
-    const {logo,job_title,company_name,remote_or_onsite,location,job_type,salary}= job;
+   const {handleDetails} = useContext(DataContext)
+
+    const {logo,job_title,company_name,remote_or_onsite,location,job_type,salary,id}= job;
 
     return (
         <div className='space-y-7 border border-[#E8E8E8] rounded-lg p-10'>
@@ -30,7 +33,7 @@ const Job = ({job,handleDetails}) => {
                   
              </div>
              {/*  */}
-             <Link to="/job-details" onClick={handleDetails} className='btn bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7  text-white font-bold '>View Details</Link>
+             <Link to={`/job-details/${id}`} onClick={()=>handleDetails(id)} className='btn bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7  text-white font-bold '>View Details</Link>
         </div>
     );
 };

@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import HeroTitle from "../herotitle/HeroTitle";
 import Job from "../job/Job";
 
 
-const JobCategory = ({handleDetails}) => {
+const JobCategory = () => {
   const data = useLoaderData();
-  console.log(data);
-  const [newData,setNewData] = useState(data.slice(0,4));
+  const {category_name} = useParams()
+    
+  const [allData,setAllData] = useState(data.slice(0,4));
+  
   const[active,setActive] = useState(true);
   const handleSlice=()=>{
-       setNewData(data);
-       setActive(false)
-  }
+    setAllData(data);
+    setActive(false)
+}
+
+   useEffect(()=>{
+        if(category_name){
+          const newData = data.filter((item)=> item.category_name === category_name);
+        setAllData(newData);
+        }
+       
+   },[category_name,data])
+
   // 
   return (
     <div className="pt-14 md:pt-20">
@@ -25,9 +36,9 @@ const JobCategory = ({handleDetails}) => {
       />
       <div className="grid md:grid-cols-2 gap-6">
         {
-        newData.map((item) => (
+       allData.map((item) => (
             <div>
-                     <Job key={item.id} job={item} handleDetails={handleDetails}></Job>
+                     <Job key={item.id} job={item} ></Job>
                    
             </div>
         ))

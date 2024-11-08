@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import HeroTitle from "../herotitle/HeroTitle";
 
-const JobCategory = ({handleDetails}) => {
-  const categories = useLoaderData();
+const JobCategory = ({categories}) => {
+
   return (
     <div className="py-10 md:py-20">
       <HeroTitle
@@ -24,14 +24,13 @@ const JobCategory = ({handleDetails}) => {
                <img src={item.logo} alt="" />
              </figure>
              <div className="space-y-2">
-                <Link className="text-xl font-extrabold text-[#474747]" to="/cate">{item.category_name}</Link>
+                <Link className="text-xl font-extrabold text-[#474747]" to={`/jobcategory/${item.category_name}`}>{item.category_name}</Link>
                 <p className="text-[#474747] text-base font-medium">{item.availability}</p>
              </div>
           </div>
         ))}
       </div>
       {/*  */}
-      <Outlet handleDetails={handleDetails} />
     </div>
   );
 };
